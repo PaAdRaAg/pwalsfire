@@ -12,6 +12,28 @@ input.addEventListener('keyup', () => {
     };
 });
 
+//Evento para enviar agregar tarea con tecla enter
+input.addEventListener('keydown', e =>{
+    if(e.keyCode === 13){
+        if(input.value.trim() != 0){
+            let localItems = JSON.parse(localStorage.getItem('localItem'))
+            if(localItems === null){
+                listareas = [];
+            }else{
+                listareas = localItems;
+            };
+            listareas.push(input.value);
+            localStorage.setItem('localItem', JSON.stringify(listareas)); 
+        }else{
+            agBtn.classList.remove('active');
+            alert("Ingrese alguna tarea para agregar.")
+        };
+        showItem();
+    }else{
+        return;
+    };
+});
+
 //Agregar tarea
 agBtn.addEventListener('click', function (){
     if(input.value.trim()!=0){
@@ -43,8 +65,8 @@ function showItem(){
     <div class="tarea">
     ${data}
     <div class="nuevaTarea-btn">
-    <i class="fa-solid fa-check nuevaTarea-btn-done" onClick="markDo(${index})"></i>            
-    <i class="fa-solid fa-xmark nuevaTarea-btn-delete" onClick="deleteItem(${index})"></i>
+    <i class="fa-solid fa-check nuevaTarea-btn-done" onclick="markDo(${index})"></i>            
+    <i class="fa-solid fa-xmark nuevaTarea-btn-delete" onclick="deleteItem(${index})"></i>
     </div>
     </div>
     `
@@ -75,5 +97,10 @@ function markDo(index) {
     } else {
       localStorage.setItem('localItem', JSON.stringify(listareas));
     };
+    showItem();
+};
+
+function limpiar(){
+    localStorage.clear();
     showItem();
 };
