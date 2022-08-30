@@ -100,6 +100,7 @@ function markDo(index) {
     showItem();
 };
 
+//Función limpiar todas las tareas de ls
 function limpiar(){
     localStorage.clear();
     showItem();
