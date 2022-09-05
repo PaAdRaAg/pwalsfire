@@ -1,0 +1,39 @@
+{
+    "name": "To Do List PWA",
+    "short_name": "TDL PWA",
+    "description": "Lista de tareas pwa que guarda la información en local storage.",
+    "theme_color": "#e9e8e8",
+    "background_color": "#e9e8e8",
+    "display": "standalone",
+    "orientation": "portrait",
+    "scope": "./",
+    "start_url": "./index.html",
+    "lang": "en",
+    "icons": [
+        {
+            "src": "./img/pwalxg.png",
+            "sizes": "982x512",
+            "type": "image/png"
+          },
+        {
+            "src": "./img/pwalg.png",
+            "sizes": "276x144",
+            "type": "image/png"
+          },
+          {
+            "src": "./img/pwal192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+          },
+          {
+            "src": "./img/pwal512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+          },
+        {
+            "src": "./img/pwalc.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        }
+    ]
+}

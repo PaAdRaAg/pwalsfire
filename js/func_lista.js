@@ -1,3 +1,6 @@
+//PWA offline
+navigator.serviceWorker.register('./Service_Worker.js');
+
 //Variables
 let input = document.querySelector('.text-tareas');
 let agBtn = document.querySelector('.btn-agregar-tarea');

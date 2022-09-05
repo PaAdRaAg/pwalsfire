@@ -3,9 +3,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#e9e8e8">
     <title>PWA Lista de tareas</title>
-    <link rel="stylesheet" href="/pwals/css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="manifest" href="./manifest.json"> 
+    <link rel="shortcut icon" type="image/png" href="./img/pwalxg.png">
+    <link rel="apple-touch-icon" href="./img/pwalxg.png">
+    <link rel="apple-touch-startup-image" href="./img/pwalxg.png">
+    <link rel="apple-touch-icon" href="./img/pwalg.png"/>
+    <link rel="apple-touch-icon" href="./img/pwalc.png"/>
+    <link rel="apple-touch-icon" href="./img/pwal192.png"/>
+    <link rel="apple-touch-icon" href="./img/pwal512.png"/>
+
+
 </head>
 <body>
     <h1>Lista de tareas</h1>
@@ -23,5 +34,6 @@
         <button class="btn-limpiar" onclick="limpiar()">Eliminar todas las tareas</button>
     </div>
 </body>
-<script src="/pwals/func_lista.js"></script>
+<script src="./js/func_lista.js"></script>
+<script src="./regist_serviceWorker.js"></script>
 </html>
