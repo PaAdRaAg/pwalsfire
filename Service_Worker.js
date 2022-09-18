@@ -1,4 +1,3 @@
-;
 //asignar un nombre y versión al cache
 const CACHE_NAME = 'ToDoList',
 urlsToCache = [
@@ -24,7 +23,7 @@ self.addEventListener('install', e => {
         })
         .catch(err => console.log('Falló registro de cache', err))
     )
-})
+});
 
 //una vez que se instala el SW, se activa y busca los recursos para hacer que funcione sin conexión
 self.addEventListener('activate', e => {
@@ -45,7 +44,7 @@ self.addEventListener('activate', e => {
         // Le indica al SW activar el cache actual
         .then(() => self.clients.claim())
     )
-})
+});
 
 //cuando el navegador recupera una url
 self.addEventListener('fetch', e => {
@@ -61,4 +60,4 @@ self.addEventListener('fetch', e => {
             return fetch(e.request);
         })
     )
-})
+});
