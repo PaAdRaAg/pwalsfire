@@ -6,6 +6,7 @@ urlsToCache = [
     './css/style.css',
     './js/func_lista.js',
     './regist_serviceWorker.js',
+    './js/sync.js',
     './img/pwalxg.png',
     './img/pwalc.png',
     './img/pwal192.png',
@@ -22,7 +23,7 @@ self.addEventListener('install', e => {
             .then(() => self.skipWaiting());
         })
         .catch(err => console.log('Falló registro de cache', err))
-    );
+    )
 });
 
 //una vez que se instala el SW, se activa y busca los recursos para hacer que funcione sin conexión
@@ -39,11 +40,11 @@ self.addEventListener('activate', e => {
                         return caches.delete(cacheName);
                     }
                 })
-            );
+            )
         })
         // Le indica al SW activar el cache actual
         .then(() => self.clients.claim())
-    );
+    )
 });
 
 //cuando el navegador recupera una url
@@ -59,15 +60,5 @@ self.addEventListener('fetch', e => {
             //recuperar de la petición a la url
             return fetch(e.request);
         })
-    );
-});
-
-async function requestBackgroundSync() {
-    await self.registration.sync.register('my-tag-name');
-}
-
-self.addEventListener('sync', event => {
-    if (event.tag === 'my-tag-name') {
-        event.waitUntil(doTheWork());
-    }
+    )
 });

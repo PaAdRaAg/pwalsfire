@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,7 +18,12 @@
     <link rel="apple-touch-icon" href="./img/pwal512.png"/>
 </head>
 <body>
-    <h1>Lista de tareas</h1>
+    <h1 name="titulo">Lista de tareas</h1>
+
+    <div class="ar-sync">
+        <input type="button" value="sincronizar" class="btn-sync">
+    </div>
+
 
     <div class="lista-tareas">
         <div class="crear-tareas">
@@ -31,8 +37,10 @@
     <div class="clear-all">
         <button class="btn-limpiar" onclick="limpiar()">Eliminar todas las tareas</button>
     </div>
+
     
-<script src="./js/func_lista.js"></script>
-<script src="./regist_serviceWorker.js"></script>
+    <script src="./js/func_lista.js"></script>
+    <script src="./regist_serviceWorker.js"></script>
+    <script src="./js/sync.js"></script>
 </body>
 </html>
