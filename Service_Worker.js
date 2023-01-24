@@ -5,6 +5,7 @@ urlsToCache = [
     './index.html',
     './css/style.css',
     './js/func_lista.js',
+    './js/firebd.js',
     './regist_serviceWorker.js',
     './img/pwalxg.png',
     './img/pwalc.png',
