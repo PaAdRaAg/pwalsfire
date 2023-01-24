@@ -6,7 +6,6 @@ urlsToCache = [
     './css/style.css',
     './js/func_lista.js',
     './regist_serviceWorker.js',
-    './js/sync.js',
     './img/pwalxg.png',
     './img/pwalc.png',
     './img/pwal192.png',
