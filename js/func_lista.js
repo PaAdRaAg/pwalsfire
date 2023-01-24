@@ -6,6 +6,10 @@ let tareas = document.querySelector('.tareas');
 //PWA offline
 navigator.serviceWorker.register('./Service_Worker.js');
 
+navigator.serviceWorker.ready.then(function(swRegistration) {
+    return swRegistration.sync.register('myFirstSync');
+});
+
 //Habilitar/deshabilitar botón de agregar
 input.addEventListener('keyup', () => {
     if(input.value.trim() !== 0){
@@ -82,7 +86,7 @@ showItem();
 
 //Función de eliminar tarea
 function deleteItem(index){
-    let localItems = JSON.parse(localStorage.getItem('localItem'));
+    //let localItems = JSON.parse(localStorage.getItem('localItem'));
     listareas.splice(index, 1);
     localStorage.setItem('localItem', JSON.stringify(listareas));
     showItem();

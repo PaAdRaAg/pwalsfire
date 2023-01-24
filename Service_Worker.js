@@ -63,12 +63,8 @@ self.addEventListener('fetch', e => {
     )
 });
 
-self.addEventListener('sync', function (event) {
-    if (event.id == 'update-leaderboard') {
-      event.waitUntil(
-        caches.open('mygame-dynamic').then(function (cache) {
-          return cache.add('/leaderboard.json');
-        }),
-      );
+self.addEventListener('sync', function(event) {
+    if (event.tag == 'myFirstSync') {
+      event.waitUntil(doSomeStuff());
     }
-  });
+});
