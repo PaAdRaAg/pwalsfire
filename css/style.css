@@ -170,31 +170,3 @@ div .btn-limpiar:hover{
 div .btn-limpiar:active{
     background-color: rgb(100, 0, 0);
 }
-
-div .btn-sync{
-    color: white;
-    background-color: rgb(0, 81, 255);
-    border-radius: 5px;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    opacity: .9;
-    width: 100%;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
-    padding: 10px;
-}
-
-div.ar-sync{
-    text-align: center;
-    width: 63%;
-    padding: 30px 0 30px 0;
-}
-
-div .btn-sync:hover{
-    background-color: rgb(0, 60, 255);
-    opacity: 1;
-}
-
-div .btn-sync:active{
-    background-color: rgb(0, 3, 158);
-}

@@ -1,6 +1,22 @@
 //PWA offline
 navigator.serviceWorker.register('./Service_Worker.js');
 
+//Firestore
+const firebaseConfig = {
+    apiKey: "AIzaSyC_XTRFO7FbvTqpd_6twCBZW4zE_TGqBKo",
+    authDomain: "pwalsbd.firebaseapp.com",
+    projectId: "pwalsbd",
+    storageBucket: "pwalsbd.appspot.com",
+    messagingSenderId: "383889818250",
+    appId: "1:383889818250:web:0e188d192a32a8c646e373",
+    measurementId: "G-4T9PQFZSY8"};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+// Initialize Cloud Firestore and get a reference to the service
+const db = firebase.firestore();
+
 //Variables
 let input = document.querySelector('.text-tareas');
 let agBtn = document.querySelector('.btn-agregar-tarea');
@@ -87,32 +103,71 @@ agBtn.addEventListener('click', function (){
     showItem();
 });
 
+let tabladb = document.querySelector('.tareasDB');
+db.collection("Usuario").onSnapshot((querySnapshot) => {
+    tabladb.innerHTML = "";
+    querySnapshot.forEach((doc) => {
+        tabladb.innerHTML += `
+        <div class="tarea">
+            ${doc.data().tarea}
+            <div class="nuevaTarea-btn">
+                <i class="fa-solid fa-check nuevaTarea-btn-done" onclick="markDo(${doc.id})"></i>            
+                <i class="fa-solid fa-xmark nuevaTarea-btn-delete" onclick="deleteItem(${doc.id})"></i>
+            </div>
+        </div>
+        `
+    });
+    // console.log(`${doc.id} => ${doc.data().tarea}`);
+});
+
 //Mostrar tareas en el html como div
 function showItem(){
-    let localItems = JSON.parse( localStorage.getItem('localItem'));
-    if(localItems === null){
-        listareas = [];
-    }
-    else{
-        listareas = localItems;
-    }
+    // const db = firebase.firestore();
+    // db.collection("Usuario").onSnapshot((querySnapshot) => {
+    //     tabladb.innerHTML= "";
+    //     querySnapshot.forEach((doc) => {
+    //         console.log(`${doc.id} => ${doc.data()}`);
+    //         tabladb.innerHTML += `
+    //         <div class="tarea">
+    //             ${doc.data()}
+    //             <div class="nuevaTarea-btn">
+    //                 <i class="fa-solid fa-check nuevaTarea-btn-done" onclick="markDo(${doc.id})"></i>            
+    //                 <i class="fa-solid fa-xmark nuevaTarea-btn-delete" onclick="deleteItem(${doc.id})"></i>
+    //             </div>
+    //         </div>
+    //         `;
+    //         input.value = '';
+    //         agBtn.classList.remove('active');
+    //     });
+    //     itemShow.innerHTML = html;
+    // });
 
-    let html = '';
-    let itemShow = document.querySelector('.tareas');
-    listareas.forEach((data, index )=> {
-    html += `
-    <div class="tarea">
-    ${data}
-    <div class="nuevaTarea-btn">
-    <i class="fa-solid fa-check nuevaTarea-btn-done" onclick="markDo(${index})"></i>            
-    <i class="fa-solid fa-xmark nuevaTarea-btn-delete" onclick="deleteItem(${index})"></i>
-    </div>
-    </div>
-    `;
-    input.value = '';
-    agBtn.classList.remove('active');
-});
-itemShow.innerHTML = html;
+
+
+//     let localItems = JSON.parse( localStorage.getItem('localItem'));
+//     if(localItems === null){
+//         listareas = [];
+//     }
+//     else{
+//         listareas = localItems;
+//     }
+
+//     let html = '';
+//     let itemShow = document.querySelector('.tareas');
+//     listareas.forEach((data, index )=> {
+//     html += `
+//     <div class="tarea">
+//         ${data}
+//         <div class="nuevaTarea-btn">
+//             <i class="fa-solid fa-check nuevaTarea-btn-done" onclick="markDo(${index})"></i>            
+//             <i class="fa-solid fa-xmark nuevaTarea-btn-delete" onclick="deleteItem(${index})"></i>
+//         </div>
+//     </div>
+//     `;
+//     input.value = '';
+//     agBtn.classList.remove('active');
+// });
+// itemShow.innerHTML = html;
 } 
 showItem();
 
@@ -147,19 +202,6 @@ function limpiar(){
     showItem();
 }
 
-//Guardar en DB
-function guardarDB(tar){
-    db.collection("Usuario").add({
-        tarea: tar
-    })
-    .then((docRef) => {
-        console.log("Registro de tarea exitoso con el ID: ", docRef.id);
-    })
-    .catch((error) => {
-        console.error("Error adding document: ", error);
-    });
-}
-
 //Elimidar de DB
 function eliminarDB(id){
 
@@ -169,3 +211,22 @@ db.collection("Usuario").doc(id).delete().then(() => {
     console.error("Error removing document: ", error);
 });
 }
+
+//Leer datos de DB
+// var tabladb = document.querySelector(".tareasDB");
+
+// db.collection("Usuario").onSnapshot((querySnapshot) => {
+//     tabladb.innerHTML= "";
+//     querySnapshot.forEach((doc) => {
+//         console.log(`${doc.id} => ${doc.data()}`);
+//         tabladb.innerHTML += `
+//         <div class="tarea">
+//             ${doc.data()}
+//             <div class="nuevaTarea-btn">
+//                 <i class="fa-solid fa-check nuevaTarea-btn-done" onclick="markDo(${doc.id})"></i>            
+//                 <i class="fa-solid fa-xmark nuevaTarea-btn-delete" onclick="deleteItem(${doc.id})"></i>
+//             </div>
+//         </div>
+//         `
+//     });
+// });
