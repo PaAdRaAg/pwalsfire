@@ -1,10 +1,10 @@
+//PWA offline
+navigator.serviceWorker.register('./Service_Worker.js');
+
 //Variables
 let input = document.querySelector('.text-tareas');
 let agBtn = document.querySelector('.btn-agregar-tarea');
 let tareas = document.querySelector('.tareas');
-
-//PWA offline
-navigator.serviceWorker.register('./Service_Worker.js');
 
 //Habilitar/deshabilitar botón de agregar
 input.addEventListener('keyup', () => {
@@ -40,19 +40,53 @@ input.addEventListener('keydown', e =>{
 
 //Agregar tarea
 agBtn.addEventListener('click', function (){
+db.collection("Usuario").add({
+    tarea: input.value
+})
+.then((docRef) => {
     if(input.value.trim()!=0){
-           let localItems = JSON.parse(localStorage.getItem('localItem'));
-            if(localItems === null){
-                listareas = [];
-        }else{
-            listareas = localItems;
-        }
-        listareas.push(input.value);
-        guardarDB(input.value)
-        localStorage.setItem('localItem', JSON.stringify(listareas)); 
+        let localItems = JSON.parse(localStorage.getItem('localItem'));
+        if(localItems === null){
+            listareas = [];
+    }else{
+        listareas = localItems;
+    }
+    listareas.push(input.value);
+    localStorage.setItem('localItem', JSON.stringify(listareas)); 
     }
     showItem();
+    console.log("Registro de tarea exitoso con el ID: ", docRef.id);
+    input.value = ""
+})
+.catch((error) => {
+    console.error("Error adding document: ", error);
 });
+});
+
+
+// if(input.value.trim()!=0){
+//     let localItems = JSON.parse(localStorage.getItem('localItem'));
+//      if(localItems === null){
+//          listareas = [];
+//  }else{
+//      listareas = localItems;
+//  }
+//  listareas.push(input.value);
+//  localStorage.setItem('localItem', JSON.stringify(listareas)); 
+// }
+// showItem();
+
+// db.collection("Usuario").add({
+//     tarea: tar
+// })
+// .then((docRef) => {
+//     console.log("Registro de tarea exitoso con el ID: ", docRef.id);
+// })
+// .catch((error) => {
+//     console.error("Error adding document: ", error);
+// });
+
+
 
 //Mostrar tareas en el html como div
 function showItem(){
@@ -125,26 +159,11 @@ function guardarDB(tar){
 }
 
 //Elimidar de DB
-function eliminarDB(){
+function eliminarDB(id){
 
-db.collection("cities").doc("DC").delete().then(() => {
+db.collection("Usuario").doc(id).delete().then(() => {
     console.log("Document successfully deleted!");
 }).catch((error) => {
     console.error("Error removing document: ", error);
 });
-
 }
-
-// db.collection("cities").doc("DC").delete().then(() => {
-//     console.log("Document successfully deleted!");
-// }).catch((error) => {
-//     console.error("Error removing document: ", error);
-// });
-
-// db.collection("cities").document("DC").delete() { err in
-//     if let err = err {
-//         print("Error removing document: \(err)")
-//     } else {
-//         print("Document successfully removed!")
-//     }
-// }
