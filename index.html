@@ -19,9 +19,9 @@
 <body>
     <h1 name="titulo">Lista de tareas</h1>
         
-    <div class="ar-sync">
+    <!-- <div class="ar-sync">
         <input type="button" value="sincronizar" class="btn-sync">
-    </div>
+    </div> -->
          
     <div class="lista-tareas">
         <div class="crear-tareas">
@@ -35,8 +35,13 @@
     <div class="clear-all">
         <button class="btn-limpiar" onclick="limpiar()">Eliminar todas las tareas</button>
     </div>
-          
-    <script src="./js/func_lista.js"></script>
+    <!-- Firebase y firestore -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <!-- Archivos -->
     <script src="./regist_serviceWorker.js"></script>
+    <script src="./js/func_lista.js"></script>
+    <script src="./js/bdConf.js"></script>
 </body>
 </html>

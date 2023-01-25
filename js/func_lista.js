@@ -6,10 +6,6 @@ let tareas = document.querySelector('.tareas');
 //PWA offline
 navigator.serviceWorker.register('./Service_Worker.js');
 
-navigator.serviceWorker.ready.then(function(swRegistration) {
-    return swRegistration.sync.register('myFirstSync');
-});
-
 //Habilitar/deshabilitar botón de agregar
 input.addEventListener('keyup', () => {
     if(input.value.trim() !== 0){
@@ -30,6 +26,7 @@ input.addEventListener('keydown', e =>{
                 listareas = localItems;
             }
             listareas.push(input.value);
+            guardarDB(input.value)
             localStorage.setItem('localItem', JSON.stringify(listareas)); 
         }else{
             agBtn.classList.remove('active');
@@ -51,6 +48,7 @@ agBtn.addEventListener('click', function (){
             listareas = localItems;
         }
         listareas.push(input.value);
+        guardarDB(input.value)
         localStorage.setItem('localItem', JSON.stringify(listareas)); 
     }
     showItem();
@@ -112,3 +110,41 @@ function limpiar(){
     localStorage.clear();
     showItem();
 }
+
+//Guardar en DB
+function guardarDB(tar){
+    db.collection("Usuario").add({
+        tarea: tar
+    })
+    .then((docRef) => {
+        console.log("Registro de tarea exitoso con el ID: ", docRef.id);
+    })
+    .catch((error) => {
+        console.error("Error adding document: ", error);
+    });
+}
+
+//Elimidar de DB
+function eliminarDB(){
+
+db.collection("cities").doc("DC").delete().then(() => {
+    console.log("Document successfully deleted!");
+}).catch((error) => {
+    console.error("Error removing document: ", error);
+});
+
+}
+
+// db.collection("cities").doc("DC").delete().then(() => {
+//     console.log("Document successfully deleted!");
+// }).catch((error) => {
+//     console.error("Error removing document: ", error);
+// });
+
+// db.collection("cities").document("DC").delete() { err in
+//     if let err = err {
+//         print("Error removing document: \(err)")
+//     } else {
+//         print("Document successfully removed!")
+//     }
+// }

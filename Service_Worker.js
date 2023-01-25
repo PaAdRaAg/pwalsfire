@@ -5,8 +5,8 @@ urlsToCache = [
     './index.html',
     './css/style.css',
     './js/func_lista.js',
+    './js/bdConfig.js',
     './regist_serviceWorker.js',
-    './js/sync.js',
     './img/pwalxg.png',
     './img/pwalc.png',
     './img/pwal192.png',
@@ -61,10 +61,4 @@ self.addEventListener('fetch', e => {
             return fetch(e.request);
         })
     )
-});
-
-self.addEventListener('sync', function(event) {
-    if (event.tag == 'myFirstSync') {
-      event.waitUntil(doSomeStuff());
-    }
 });
