@@ -2,11 +2,11 @@
 const CACHE_NAME = 'ToDoList',
 urlsToCache = [
     './',
+    './regist_serviceWorker.js',
     './index.html',
     './css/style.css',
     './js/func_lista.js',
     './js/bdConfig.js',
-    './regist_serviceWorker.js',
     './img/pwalxg.png',
     './img/pwalc.png',
     './img/pwal192.png',

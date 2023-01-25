@@ -10,7 +10,8 @@ let tareas = document.querySelector('.tareas');
 input.addEventListener('keyup', () => {
     if(input.value.trim() !== 0){
         agBtn.classList.add('active');
-    } else{
+    } 
+    else{
         agBtn.classList.remove('active');
     }
 });
@@ -22,78 +23,77 @@ input.addEventListener('keydown', e =>{
             let localItems = JSON.parse(localStorage.getItem('localItem'));
             if(localItems === null){
                 listareas = [];
-            }else{
+            }
+            else{
                 listareas = localItems;
             }
+            //A la base de datos
+            db.collection("Usuario").add({
+                tarea: input.value
+            })
+            .then((docRef) => {
+                console.log("Registro de tarea exitoso con el ID: ", docRef.id);
+            })
+            .catch((error) => {
+                console.error("Error adding document: ", error);
+            });
+            
             listareas.push(input.value);
-            guardarDB(input.value)
+            console.log("Registro de tarea el ls exitoso");
             localStorage.setItem('localItem', JSON.stringify(listareas)); 
-        }else{
+        }
+        else{
             agBtn.classList.remove('active');
             alert("Ingrese alguna tarea para agregar.");
         }
+        input.value = ""
         showItem();
-    }else{
+    }
+    else{
         return;
     }
 });
 
 //Agregar tarea
 agBtn.addEventListener('click', function (){
-db.collection("Usuario").add({
-    tarea: input.value
-})
-.then((docRef) => {
-    if(input.value.trim()!=0){
+    if(input.value.trim() != 0){
         let localItems = JSON.parse(localStorage.getItem('localItem'));
         if(localItems === null){
             listareas = [];
-    }else{
-        listareas = localItems;
+        }
+        else{
+            listareas = localItems;
+        }
+        //A la base de datos
+        db.collection("Usuario").add({
+            tarea: input.value
+        })
+        .then((docRef) => {
+            console.log("Registro de tarea exitoso con el ID: ", docRef.id);
+        })
+        .catch((error) => {
+            console.error("Error adding document: ", error);
+        });
+        
+        listareas.push(input.value);
+        console.log("Registro de tarea el ls exitoso");
+        localStorage.setItem('localItem', JSON.stringify(listareas)); 
     }
-    listareas.push(input.value);
-    localStorage.setItem('localItem', JSON.stringify(listareas)); 
+    else{
+        agBtn.classList.remove('active');
+        alert("Ingrese alguna tarea para agregar.");
     }
-    showItem();
-    console.log("Registro de tarea exitoso con el ID: ", docRef.id);
     input.value = ""
-})
-.catch((error) => {
-    console.error("Error adding document: ", error);
+    showItem();
 });
-});
-
-
-// if(input.value.trim()!=0){
-//     let localItems = JSON.parse(localStorage.getItem('localItem'));
-//      if(localItems === null){
-//          listareas = [];
-//  }else{
-//      listareas = localItems;
-//  }
-//  listareas.push(input.value);
-//  localStorage.setItem('localItem', JSON.stringify(listareas)); 
-// }
-// showItem();
-
-// db.collection("Usuario").add({
-//     tarea: tar
-// })
-// .then((docRef) => {
-//     console.log("Registro de tarea exitoso con el ID: ", docRef.id);
-// })
-// .catch((error) => {
-//     console.error("Error adding document: ", error);
-// });
-
-
 
 //Mostrar tareas en el html como div
 function showItem(){
     let localItems = JSON.parse( localStorage.getItem('localItem'));
     if(localItems === null){
         listareas = [];
-    }else{
+    }
+    else{
         listareas = localItems;
     }
 
@@ -128,12 +128,14 @@ function deleteItem(index){
 function markDo(index) {
     if (listareas[index].includes('<strike>')){
         listareas[index] = listareas[index].replace('<strike>', "");
-    } else {
+    } 
+    else {
         listareas[index] = '<strike>' + listareas[index] + '</strike>';
     }
     if (localStorage.getItem('localItem') == null){
       localStorage.setItem('localItem', JSON.stringify(listareas));
-    } else {
+    } 
+    else {
       localStorage.setItem('localItem', JSON.stringify(listareas));
     }
     showItem();

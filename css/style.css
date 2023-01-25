@@ -49,6 +49,7 @@ div div input.text-tareas{
     outline: none;
     text-transform: capitalize;
     width: 100%;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
 }
 
 button.btn-agregar-tarea{
@@ -63,6 +64,7 @@ button.btn-agregar-tarea{
     opacity: .6;
     pointer-events: none;
     margin: 0 0 0 5px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
 }
 
 button.btn-agregar-tarea.active{
