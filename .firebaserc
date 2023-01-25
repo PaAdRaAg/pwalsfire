@@ -1,9 +1,5 @@
 {
   "projects": {
-<<<<<<< HEAD
     "default": "pwalsbd"
-=======
-    "default": "pwals-e5335"
->>>>>>> af9c99cb17838c9bc7b1c6d4b0b8d04f4f4bb48e
   }
 }
