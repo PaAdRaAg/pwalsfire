@@ -103,6 +103,7 @@ agBtn.addEventListener('click', function (){
     showItem();
 });
 
+//Mostrar las tareas a partir de la DB
 let tabladb = document.querySelector('.tareasDB');
 db.collection("Usuario").onSnapshot((querySnapshot) => {
     tabladb.innerHTML = "";
@@ -117,33 +118,10 @@ db.collection("Usuario").onSnapshot((querySnapshot) => {
         </div>
         `
     });
-    // console.log(`${doc.id} => ${doc.data().tarea}`);
 });
 
 //Mostrar tareas en el html como div
 function showItem(){
-    // const db = firebase.firestore();
-    // db.collection("Usuario").onSnapshot((querySnapshot) => {
-    //     tabladb.innerHTML= "";
-    //     querySnapshot.forEach((doc) => {
-    //         console.log(`${doc.id} => ${doc.data()}`);
-    //         tabladb.innerHTML += `
-    //         <div class="tarea">
-    //             ${doc.data()}
-    //             <div class="nuevaTarea-btn">
-    //                 <i class="fa-solid fa-check nuevaTarea-btn-done" onclick="markDo(${doc.id})"></i>            
-    //                 <i class="fa-solid fa-xmark nuevaTarea-btn-delete" onclick="deleteItem(${doc.id})"></i>
-    //             </div>
-    //         </div>
-    //         `;
-    //         input.value = '';
-    //         agBtn.classList.remove('active');
-    //     });
-    //     itemShow.innerHTML = html;
-    // });
-
-
-
 //     let localItems = JSON.parse( localStorage.getItem('localItem'));
 //     if(localItems === null){
 //         listareas = [];
