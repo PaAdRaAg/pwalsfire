@@ -110,6 +110,14 @@ div.tarea.completada p{
     color: black;
 }
 
+.completed {
+    text-decoration: line-through;
+}
+
+.unCompleted {
+    text-decoration: none;
+}
+
 div.nuevaTarea-btn{
     display: flex;
     align-items: center;

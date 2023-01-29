@@ -49,12 +49,13 @@ input.addEventListener('keydown', e =>{
             .catch((error) => {
                 console.error("Error: ", error);
             });
+            input.value = ""
         }
         else{
-            agBtn.classList.remove('active');
             alert("Ingrese alguna tarea para agregar.");
+            input.value = ""
+            agBtn.classList.remove('active');
         }
-        input.value = ""
     }
     else{
         return;
@@ -69,7 +70,7 @@ agBtn.addEventListener('click', function (){
         db.collection("Usuario").add({
             tarea: input.value,
             status: "activa",
-            timesamp: firebase.firestore.FieldValue.serverTimestamp()
+            timestamp: firebase.firestore.Timestamp.fromDate(new Date())
         })
         .then((docRef) => {
             console.log("Adición exitosa || ID: " + docRef.id + " Tarea: " + tarea);
@@ -82,71 +83,13 @@ agBtn.addEventListener('click', function (){
         agBtn.classList.remove('active');
         alert("Ingrese alguna tarea para agregar.");
     }
-    input.value = "";
+    input.value = ""
+    agBtn.classList.remove('active');
+
 });
 
-// 3 Marcar como hechas (cambiar status en db)
-function markDo(id){
-
-    db.collection("Usuario").doc(id).update({
-        status: "completed"
-    })
-    // item.get().then(function(doc) {
-    //     if (doc.exists) {
-    //         console.log("pasó 1")
-    //         if(doc.data().status == "activa"){
-    //             console.log("pasó 2")
-    //             item.update({
-    //                 status: "completed"
-    //             })
-    //         } else {
-    //             item.update({
-    //                 status: "activa"
-    //             })
-    //         }
-    //     }
-    // })
-
-    // let item = db.collection("Usuario").doc(id);
-    // item.get().then(function(doc) {
-    //     if (doc.exists) {
-    //         console.log("pasó 1")
-    //         if(doc.data().status == "activa"){
-    //             console.log("pasó 2")
-    //             item.update({
-    //                 status: "completed"
-    //             })
-    //         } else {
-    //             item.update({
-    //                 status: "activa"
-    //             })
-    //         }
-    //     }
-    // })
-}
-
-// .completed {
-//     text-decoration: line-through;
-// }
-
-// .unCompleted {
-//     text-decoration: none;
-// }
-
-// 4 Eliminar tarea (de db)
-function deleteItem(){
-    db.collection("Usuario").doc(id).delete().then(() => {
-        console.log("Document successfully deleted!");
-    }).catch((error) => {
-        console.error("Error removing document: ", error);
-    });
-}
-
-
-
 // 2 Mostrar tareas (de db) (y actualizar ls en base a db)
-// db.collection("citas_registradas").orderBy("fecha", "desc")
-db.collection("Usuario").orderBy("timestamp", "asc").onSnapshot((querySnapshot) => {
+db.collection("Usuario").orderBy("timestamp", "desc").onSnapshot((querySnapshot) => {
     tareas.innerHTML = "";
     localStorage.clear();
 
@@ -159,18 +102,49 @@ db.collection("Usuario").orderBy("timestamp", "asc").onSnapshot((querySnapshot) 
             listareas = localItems;
         }
         listareas.push(doc.data().tarea);
-        console.log("Registro de tarea el ls exitoso");
         localStorage.setItem('localItem', JSON.stringify(listareas)); 
 
         tareas.innerHTML += `
-        <div class="tarea">
+        <div class="tarea" id="'${doc.id}'">
             ${doc.data().tarea}
             <div class="nuevaTarea-btn">
-                <i class="fa-solid fa-check nuevaTarea-btn-done" onclick="markDo(toString(doc.id))"></i>            
-                <i class="fa-solid fa-xmark nuevaTarea-btn-delete" onclick="deleteItem(${doc.id})"></i>
+                <i class="fa-solid fa-check nuevaTarea-btn-done" onclick="markDo('${doc.id}')"></i>            
+                <i class="fa-solid fa-xmark nuevaTarea-btn-delete" onclick="deleteItem('${doc.id}')"></i>
             </div>
         </div>
         `
     });
+    console.log("Registro de tarea el ls exitoso");
 });
 
+// 3 Marcar como hechas (cambiar status en db)
+function markDo(id){
+
+    let ta = document.getElementById(id);
+    console.log(ta.innerHTML);
+    // id.classList.add('completada');
+    // ta.classList.remove('completada');
+    let item = db.collection("Usuario").doc(id);
+    item.get().then(function(doc) {
+        if (doc.exists) {
+            if(doc.data().status == "activa"){
+                item.update({
+                    status: "completed"
+                })
+            } else {
+                item.update({
+                    status: "activa"
+                })
+            }
+        }
+    })
+}
+
+// 4 Eliminar tarea (de db)
+function deleteItem(id){
+    db.collection("Usuario").doc(id).delete().then(() => {
+        console.log("Document successfully deleted!");
+    }).catch((error) => {
+        console.error("Error removing document: ", error);
+    });
+}
