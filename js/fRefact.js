@@ -95,7 +95,7 @@ agBtn.addEventListener('click', function (){
 });
 
 // 2 Mostrar tareas (de db) (y actualizar ls en base a db)
-db.collection("Usuario").orderBy("timestamp", "desc").onSnapshot((querySnapshot) => {
+db.collection("Usuario").orderBy("timestamp", "asc").onSnapshot((querySnapshot) => {
     tareas.innerHTML = "";
     localStorage.clear();
 
