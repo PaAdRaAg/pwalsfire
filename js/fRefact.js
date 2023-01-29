@@ -100,6 +100,7 @@ db.collection("Usuario").orderBy("timestamp", "asc").onSnapshot((querySnapshot) 
     localStorage.clear();
 
     querySnapshot.forEach((doc) => {
+        
         let localItems = JSON.parse(localStorage.getItem('localItem'));
         if(localItems === null){
             listareas = [];
@@ -109,11 +110,11 @@ db.collection("Usuario").orderBy("timestamp", "asc").onSnapshot((querySnapshot) 
         };
         listareas.push(doc.data().tarea);
         localStorage.setItem('localItem', JSON.stringify(listareas)); 
-
+        
         if(doc.data().status == "completed"){
             tareas.innerHTML += `
             <div class="tarea" id="'${doc.id}'">
-            <p><strike>${doc.data().tarea}</strike></p>
+            <p class="line">${doc.data().tarea}</p>
                 <div class="nuevaTarea-btn">
                     <i class="fa-solid fa-check nuevaTarea-btn-done" onclick="markDo('${doc.id}')"></i>            
                     <i class="fa-solid fa-xmark nuevaTarea-btn-delete" onclick="deleteItem('${doc.id}')"></i>
@@ -143,20 +144,23 @@ db.collection("Usuario").orderBy("timestamp", "asc").onSnapshot((querySnapshot) 
 function markDo(id){
     let item = db.collection("Usuario").doc(id);
     item.get().then(function(doc) {
-        if (doc.exists) {
+        // if (doc.exists) {
             if(doc.data().status == "activa"){
                 item.update({
                     status: "completed"
                 });
                 console.log("Estado actualizado correctamente a 'COMPLETADO'");
-            } 
-            else {
+            }             
+            if(doc.data().status == "completed"){
                 item.update({
                     status: "activa"
-                })
+                });
                 console.log("Estado actualizado correctamente a 'ACTIVA'");
+            } 
+            else {
+                return;
             };
-        };
+        // };
     });
     console.log("BD actualizada");
 };

@@ -143,3 +143,7 @@ div i.nuevaTarea-btn-delete:hover{
 strike{
     color: gray;
 }
+
+.line{
+    text-decoration: line-through;
+}
