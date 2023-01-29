@@ -5,7 +5,7 @@ urlsToCache = [
     './regist_serviceWorker.js',
     './index.html',
     './css/style.css',
-    './js/func_lista.js',
+    './js/fRefact.js',
     './img/pwalxg.png',
     './img/pwalc.png',
     './img/pwal192.png',
