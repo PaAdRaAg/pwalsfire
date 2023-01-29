@@ -111,10 +111,6 @@ input.addEventListener('keydown', e =>{
 //     return;
 // }
 
-
-
-
-
 //Agregar tarea
 agBtn.addEventListener('click', function (){
     if(input.value.trim() != 0){
