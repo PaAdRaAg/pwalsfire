@@ -30,7 +30,7 @@ input.addEventListener('keyup', () => {
     let firstLetter = sentence.charAt(0).toUpperCase();
     let restOfSentence = sentence.slice(1).toLowerCase();
     input.value = firstLetter + restOfSentence;
-    
+
     if(input.value.trim() !== 0){
         agBtn.classList.add('active');
     } else{
@@ -50,7 +50,7 @@ input.addEventListener('keydown', e =>{
                 timestamp: firebase.firestore.Timestamp.fromDate(new Date())
             })
             .then((docRef) => {
-                console.log("Adición exitosa || ID: " + docRef.id + " Tarea: " + tarea);
+                console.log("Adición exitosa a BD || ID: " + docRef.id + " Tarea: " + tarea);
             })
             .catch((error) => {
                 console.error("Error: ", error);
