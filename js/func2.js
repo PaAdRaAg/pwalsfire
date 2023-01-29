@@ -19,7 +19,6 @@ const db = firebase.firestore();
 
 let tabladb = document.querySelector('.tareasDB');
 
-
 function getItems(){
     db.collection("Usuario").onSnapshot((snapshot) => {
         let items = [];
@@ -65,8 +64,6 @@ function generateItems(items){
     });
     document.querySelector(".Usuario").replaceChildren(...todoItems);
 };
-
-
 
 function addItem(event){
     event.preventDefault();

@@ -74,8 +74,6 @@ input.addEventListener('keydown', e =>{
     }
 });
 
-
-
 // if(e.keyCode === 13){
 //     if(input.value.trim() != 0){
 //         let localItems = JSON.parse(localStorage.getItem('localItem'));
@@ -201,5 +199,3 @@ db.collection("Usuario").doc(id).delete().then(() => {
     console.error("Error removing document: ", error);
 });
 }
-
-/*------------------------------------------*/
