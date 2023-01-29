@@ -9,7 +9,8 @@ const firebaseConfig = {
     storageBucket: "pwalsbd.appspot.com",
     messagingSenderId: "383889818250",
     appId: "1:383889818250:web:0e188d192a32a8c646e373",
-    measurementId: "G-4T9PQFZSY8"};
+    measurementId: "G-4T9PQFZSY8"
+};
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
@@ -25,11 +26,16 @@ let tareas = document.querySelector('.tareas');
 // 1 Agregar tareas (a db)
 //Habilitar / deshabilitar botón de agregar
 input.addEventListener('keyup', () => {
+    let sentence = input.value;
+    let firstLetter = sentence.charAt(0).toUpperCase();
+    let restOfSentence = sentence.slice(1).toLowerCase();
+    input.value = firstLetter + restOfSentence;
+    
     if(input.value.trim() !== 0){
         agBtn.classList.add('active');
     } else{
         agBtn.classList.remove('active');
-    }
+    };
 });
 
 //Evento para enviar agregar tarea con tecla enter
@@ -55,11 +61,11 @@ input.addEventListener('keydown', e =>{
             alert("Ingrese alguna tarea para agregar.");
             input.value = ""
             agBtn.classList.remove('active');
-        }
+        };
     }
     else{
         return;
-    }
+    };
 });
 
 //Agregar tarea con botón
@@ -73,7 +79,7 @@ agBtn.addEventListener('click', function (){
             timestamp: firebase.firestore.Timestamp.fromDate(new Date())
         })
         .then((docRef) => {
-            console.log("Adición exitosa || ID: " + docRef.id + " Tarea: " + tarea);
+            console.log("Adición exitosa a BD || ID: " + docRef.id + " Tarea: " + tarea);
         })
         .catch((error) => {
             console.error("Error: ", error);
@@ -100,45 +106,60 @@ db.collection("Usuario").orderBy("timestamp", "desc").onSnapshot((querySnapshot)
         }
         else{
             listareas = localItems;
-        }
+        };
         listareas.push(doc.data().tarea);
         localStorage.setItem('localItem', JSON.stringify(listareas)); 
 
-        tareas.innerHTML += `
-        <div class="tarea" id="'${doc.id}'">
-            ${doc.data().tarea}
-            <div class="nuevaTarea-btn">
-                <i class="fa-solid fa-check nuevaTarea-btn-done" onclick="markDo('${doc.id}')"></i>            
-                <i class="fa-solid fa-xmark nuevaTarea-btn-delete" onclick="deleteItem('${doc.id}')"></i>
+        if(doc.data().status == "completed"){
+            tareas.innerHTML += `
+            <div class="tarea" id="'${doc.id}'">
+            <p><strike>${doc.data().tarea}</strike></p>
+                <div class="nuevaTarea-btn">
+                    <i class="fa-solid fa-check nuevaTarea-btn-done" onclick="markDo('${doc.id}')"></i>            
+                    <i class="fa-solid fa-xmark nuevaTarea-btn-delete" onclick="deleteItem('${doc.id}')"></i>
+                </div>
             </div>
-        </div>
-        `
+            `
+        }
+        if(doc.data().status == "activa"){
+            tareas.innerHTML += `
+            <div class="tarea" id="'${doc.id}'">
+                <p>${doc.data().tarea}</p>
+                <div class="nuevaTarea-btn">
+                    <i class="fa-solid fa-check nuevaTarea-btn-done" onclick="markDo('${doc.id}')"></i>            
+                    <i class="fa-solid fa-xmark nuevaTarea-btn-delete" onclick="deleteItem('${doc.id}')"></i>
+                </div>
+            </div>
+            `
+        }
+        else{
+            return;
+        };
     });
-    console.log("Registro de tarea el ls exitoso");
+    console.log("Actualizacion de ls exitosa");
 });
 
 // 3 Marcar como hechas (cambiar status en db)
 function markDo(id){
-
-    let ta = document.getElementById(id);
-    console.log(ta.innerHTML);
-    // id.classList.add('completada');
-    // ta.classList.remove('completada');
     let item = db.collection("Usuario").doc(id);
     item.get().then(function(doc) {
         if (doc.exists) {
             if(doc.data().status == "activa"){
                 item.update({
                     status: "completed"
-                })
-            } else {
+                });
+                console.log("Estado actualizado correctamente a 'COMPLETADO'");
+            } 
+            else {
                 item.update({
                     status: "activa"
                 })
-            }
-        }
-    })
-}
+                console.log("Estado actualizado correctamente a 'ACTIVA'");
+            };
+        };
+    });
+    console.log("BD actualizada");
+};
 
 // 4 Eliminar tarea (de db)
 function deleteItem(id){
@@ -147,4 +168,4 @@ function deleteItem(id){
     }).catch((error) => {
         console.error("Error removing document: ", error);
     });
-}
+};

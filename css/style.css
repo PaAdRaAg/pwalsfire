@@ -47,7 +47,6 @@ div div input.text-tareas{
     border: 1px solid gray;
     font-size: 16px;
     outline: none;
-    text-transform: capitalize;
     width: 100%;
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
 }
@@ -94,7 +93,6 @@ div.tarea{
     justify-content: space-between;
     align-items: center;
     font-family: Arial, Helvetica, sans-serif;
-    text-transform: capitalize;
     word-break: break-all;
 }
 
@@ -105,17 +103,8 @@ div.tarea p{
     letter-spacing: 1px;
 }
 
-div.tarea.completada p{
-    text-decoration: line-through;
-    color: black;
-}
-
-.completed {
-    text-decoration: line-through;
-}
-
-.unCompleted {
-    text-decoration: none;
+div.tarea p::first-letter{
+    text-transform: uppercase;
 }
 
 div.nuevaTarea-btn{
@@ -151,30 +140,6 @@ div i.nuevaTarea-btn-delete:hover{
     color: rgb(255, 0, 0);
 }
 
-div.clear-all{
-    text-align: center;
-    width: 63%;
-    padding: 30px 0 30px 0;
-}
-
-div .btn-limpiar{
-    color: white;
-    background-color: red;
-    border-radius: 5px;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    opacity: .9;
-    width: 100%;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
-    padding: 10px;
-}
-
-div .btn-limpiar:hover{
-    background-color: rgb(190, 0, 0);
-    opacity: 1;
-}
-
-div .btn-limpiar:active{
-    background-color: rgb(100, 0, 0);
+strike{
+    color: gray;
 }
