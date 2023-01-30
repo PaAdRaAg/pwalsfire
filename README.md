@@ -33,19 +33,19 @@ JS
 ``` javascript
 const firebaseConfig = {
 
-    apiKey: "AIzaSyC_XTRFO7FbvTqpd_6twCBZW4zE_TGqBKo",
+    apiKey: "El contenido que aparezca en tu firebaseconfig",
 
-    authDomain: "pwalsbd.firebaseapp.com",
+    authDomain: "El contenido que aparezca en tu firebaseconfig",
 
-    projectId: "pwalsbd",
+    projectId: "El contenido que aparezca en tu firebaseconfig",
 
-    storageBucket: "pwalsbd.appspot.com",
+    storageBucket: "El contenido que aparezca en tu firebaseconfig",
 
-    messagingSenderId: "383889818250",
+    messagingSenderId: "El contenido que aparezca en tu firebaseconfig",
 
-    appId: "1:383889818250:web:0e188d192a32a8c646e373",
+    appId: "El contenido que aparezca en tu firebaseconfig",
 
-    measurementId: "G-4T9PQFZSY8"
+    measurementId: "El contenido que aparezca en tu firebaseconfig"
 
 };
 
@@ -57,6 +57,11 @@ const db = firebase.firestore();
 Ejemplo:
 ![Image text](./imgs-readme/firestorecnc.PNG)
 
+Este apardado de código para la configuración se obtiene entrando a la configuración del proyecto en firebase presionando el ícono de engrane.
+![Image text](./imgs-readme/confproy.PNG)
+
+En la página que carga, ve hacia el fondo donde te aparecerá un código, seleccionas la opción de "config" tal como aparece en la imágen, lo copias y lo pegas en el archivo js.
+![Image text](./imgs-readme/config.PNG.PNG)
 
 Esto se debe de colocar al principio del archivo de js para que se pueda establecer la conexión con la base de datos.
 
