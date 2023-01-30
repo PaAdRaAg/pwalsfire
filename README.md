@@ -69,5 +69,17 @@ El "firebaseconfig" es un SDK que contiene la api para conectarse a nuestra base
 
 El siguiente comando es para que inicialice la aplicación y se establezca la conexión.
 
-Y la tercera que se guarda como una constante, es para que la puedas referenciar para leer, eliminar y modificar los datos
+Y la tercera que se guarda como una constante, es para que la puedas referenciar para añadir, leer, modificar y eliminar los datos
 de firestore.
+
+Añadir datos (tareas).
+eliminar![Image text](./imgs-readme/agtarea.PNG)
+
+Leer y mostrar datos.
+![Image text](./imgs-readme/mosttareas.PNG)
+
+Modificar datos.
+![Image text](./imgs-readme/modstatus.PNG)
+
+Eliminar datos.
+![Image text](./imgs-readme/elimtareas.PNG)
