@@ -72,14 +72,14 @@ El siguiente comando es para que inicialice la aplicación y se establezca la co
 Y la tercera que se guarda como una constante, es para que la puedas referenciar para añadir, leer, modificar y eliminar los datos
 de firestore.
 
-Añadir datos (tareas).
-eliminar![Image text](./imgs-readme/agtarea.PNG)
+Añadir datos(tareas).
+![Image text](./imgs-readme/agtarea.PNG)
 
-Leer y mostrar datos.
+Leer y mostrar datos(tareas).
 ![Image text](./imgs-readme/mosttareas.PNG)
 
-Modificar datos.
+Modificar datos(tareas).
 ![Image text](./imgs-readme/modstatus.PNG)
 
-Eliminar datos.
+Eliminar datos(tareas).
 ![Image text](./imgs-readme/elimtareas.PNG)
