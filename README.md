@@ -18,8 +18,10 @@ C:\Users\tu-usuario\ruta-de-la-carpeta>npm i firebase-tools
 
 
 HTML
+``` javascript
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+```
 
 Ejemplo:
 ![Image text](./imgs-readme/firebasesrc.PNG)
@@ -28,9 +30,9 @@ Debes agregar estos scripts cuya función es conectarse primeramente a firebase 
 medio para hostear y el siguiente es para conectarse a la base de datos de firebase, es decir, firestore.
 
 JS
-
+``` javascript
 const firebaseConfig = {
-    
+
     apiKey: "AIzaSyC_XTRFO7FbvTqpd_6twCBZW4zE_TGqBKo",
 
     authDomain: "pwalsbd.firebaseapp.com",
@@ -50,6 +52,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const db = firebase.firestore();
+```
 
 Ejemplo:
 ![Image text](./imgs-readme/firestorecnc.PNG)
