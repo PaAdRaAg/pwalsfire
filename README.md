@@ -61,7 +61,7 @@ Este apardado de código para la configuración se obtiene entrando a la configu
 ![Image text](./imgs-readme/confproy.PNG)
 
 En la página que carga, ve hacia el fondo donde te aparecerá un código, seleccionas la opción de "config" tal como aparece en la imágen, lo copias y lo pegas en el archivo js.
-![Image text](./imgs-readme/config.PNG.PNG)
+![Image text](./imgs-readme/config.PNG)
 
 Esto se debe de colocar al principio del archivo de js para que se pueda establecer la conexión con la base de datos.
 
