@@ -99,7 +99,6 @@ div.tarea{
 div.tarea p{
     font-size: 16px;
     font-weight: 400;
-    color: black;
     letter-spacing: 1px;
 }
 
@@ -140,10 +139,7 @@ div i.nuevaTarea-btn-delete:hover{
     color: rgb(255, 0, 0);
 }
 
-strike{
+p.line{
     color: gray;
-}
-
-.line{
     text-decoration: line-through;
 }
