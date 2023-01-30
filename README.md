@@ -5,6 +5,7 @@ Esta es una lista de tareas conectada a una base de datos donde las almacena y l
 **Dependencias requeridaas**
 
 powershell
+
 npm i firebase-tools
 
 Para ejecutar este comando debes estar en el cmd y estar situado en el directorio raíz donde la vas a ejecutar.
@@ -27,14 +28,23 @@ Debes agregar estos scripts cuya función es conectarse primeramente a firebase 
 medio para hostear y el siguiente es para conectarse a la base de datos de firebase, es decir, firestore.
 
 JS
+
 const firebaseConfig = {
+    
     apiKey: "AIzaSyC_XTRFO7FbvTqpd_6twCBZW4zE_TGqBKo",
+
     authDomain: "pwalsbd.firebaseapp.com",
+
     projectId: "pwalsbd",
+
     storageBucket: "pwalsbd.appspot.com",
+
     messagingSenderId: "383889818250",
+
     appId: "1:383889818250:web:0e188d192a32a8c646e373",
+
     measurementId: "G-4T9PQFZSY8"
+
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -46,7 +56,10 @@ Ejemplo:
 
 
 Esto se debe de colocar al principio del archivo de js para que se pueda establecer la conexión con la base de datos.
+
 El "firebaseconfig" es un SDK que contiene la api para conectarse a nuestra base de datos específica.
+
 El siguiente comando es para que inicialice la aplicación y se establezca la conexión.
+
 Y la tercera que se guarda como una constante, es para que la puedas referenciar para leer, eliminar y modificar los datos
 de firestore.
