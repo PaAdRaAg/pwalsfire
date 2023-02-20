@@ -1,4 +1,4 @@
-# Lista de tareas con firestore
+# Lista de tareas con firebase y firestore
 
 Esta es una lista de tareas conectada a una base de datos donde las almacena y las recupera.
 
@@ -15,7 +15,57 @@ C:\Users\tu-usuario\ruta-de-la-carpeta>npm i firebase-tools
 
 ![Image text](./imgs-readme/firebasecmd.PNG)
 
+# Hostear con firebase
 
+Ahora se hace loogin dentro de la carpeta con el comando
+
+powershell
+
+firebase login
+
+Ahí iniciaras sesión con la cuenta que utilizarás para acceder al proyecto
+
+Ahora se debes iniciar firebase con el comando
+
+powershell
+
+firebase init
+
+Te aparecerá algo como lo siguiente:
+
+![Image text](./imgs-readme/inity.png)
+
+Como se ve en la imagen pones la letra "Y"
+
+Posterior a esto aparecerán varias opciones de hosteeo y deberás ubicar con las fechas la opción siguiente
+
+![Image text](./imgs-readme/firhost.png)
+
+Deberás seleccionarla con la barra espaciadora
+
+Después de esto deberás seleccionar el proyecto que quieres hostear, te aparecerá dependiendo de los proyectos que tengas 
+y el nombre que les hayas puesto
+
+![Image text](./imgs-readme/selecproy.png)
+
+Posterior a esto te aparecerá una opción para que selecciones el directorio donde se encuentra el proyecto, ahí pondrás "./"
+Después te preguntará si quieres configurar como página de inicio, ahí pondrás "No"
+Después preguntará si quieres que los despliegues se hagan automaticamente con github, ahí pondrás "No"
+Finalmente preguntará que si ya exise el archivo index.html lo reescriba, ahí pondrás "No"    
+
+![Image text](./imgs-readme/pregfir.png)
+
+Finalmente aparecerá el mensaje de que firebase se ha inicializado correctamente y para actualizar el proyecto según tu código
+deberás ejecutar el comando firebase deploy desde cmd en el archivo raíz de tu proyecto.
+
+powershell
+
+firebase deploy
+
+Después de esto te aparecerá un link donde se encuentra el proyecto hosteado. Es el link que deberás copiar y pegar en el navegador.
+(consejo al cargar la página y actualizar para cambios presion ctrl + f5)
+
+# Implementar base de datos firestore
 
 HTML
 ``` javascript
